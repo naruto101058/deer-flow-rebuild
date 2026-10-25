@@ -1,0 +1,25 @@
+# 1. 虚拟环境目录 (uv 默认创建 .venv)
+.venv/
+env/
+venv/
+
+# 2. Python 编译文件和缓存
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# 3. 环境变量和敏感机密 (绝对不能提交！)
+.env
+.env.local
+.env.*
+*.pem
+
+# 4. 本地 IDE 和编辑器配置
+.vscode/
+.idea/
+*.swp
+.DS_Store  # Mac 系统的恶心文件
+/学习笔记.md
+# 5. 依赖包管理锁文件？
+# 注意：uv.lock 或 requirements.txt 是**必须**提交的，所以千万别把它们写进 gitignore！
