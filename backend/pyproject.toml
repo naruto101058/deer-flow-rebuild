@@ -1,26 +1,26 @@
 [project]
-name = "backend"
+name = "deer-flow-rebuild"
 version = "0.1.0"
-description = "Add your description here"
+description = "A backend for the Deer Flow rebuild"
 readme = "README.md"
 authors = [
     { name = "sjj", email = "2691704660@qq.com" }
 ]
 requires-python = ">=3.12"
 dependencies = [
+    "deerflow-rebuild-harness",
     "fastapi==0.136.1",
     "uvicorn[standard]==0.46.0",
 ]
-
-[project.scripts]
-backend = "backend:main"
-
-[build-system]
-requires = ["uv_build>=0.13.1,<0.14.0"]
-build-backend = "uv_build"
 
 [dependency-groups]
 dev = [
     "httpx==0.28.1",
     "pytest==9.0.3",
 ]
+
+[tool.uv.workspace]
+members = ["packages/harness"]
+#
+[tool.uv.sources]
+deerflow-rebuild-harness = { workspace = true }
