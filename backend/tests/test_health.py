@@ -1,5 +1,5 @@
 from fastapi.testclient import TestClient
-from backend.api import app
+from app.gateway.app import app
 
 def test_health():
     with TestClient(app) as client:

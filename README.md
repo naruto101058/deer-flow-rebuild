@@ -8,6 +8,11 @@
 - 提供高并发、低延迟的 API 接口支持。
 - 建立规范的自动化测试和现代化依赖管理流程（基于 `uv` 工具）。
 
+### 架构拆分说明
+本项目采用了严格的分层架构，核心分为两部分：
+- **`app/` 目录**：应用层代码，专门负责处理 HTTP 请求、API 路由（Gateway）以及具体的业务逻辑。
+- **`harness/` 目录**（位于 `packages/` 下）：框架层代码，提供独立、可复用的智能体（Agent）核心能力、工具和底层组件。
+
 ## 🛠️ 安装依赖
 
 本项目使用极速的 Python 包管理工具 [uv](https://github.com/astral-sh/uv) 进行环境和依赖管理。
@@ -19,7 +24,7 @@
 ```bash
 # 从仓库根目录进入后端
 cd backend
-uv sync --locked
+uv sync --locked --group dev
 ```
 
 *(备注：`--locked` 参数要求 `uv` 严格按照已提交的 `uv.lock` 锁文件进行安装，防止因依赖包自动升级导致不同电脑上的环境不一致。如果你需要手动补全依赖，参考命令：核心包 `uv add 'fastapi==0.136.1' 'uvicorn[standard]==0.46.0'`，开发包 `uv add --dev 'pytest==9.0.3' 'httpx==0.28.1'`)*
@@ -29,7 +34,7 @@ uv sync --locked
 确保当前在 `backend/` 目录下，通过以下命令启动后端服务，并开启热重载模式（修改代码后无需手动重启服务）：
 
 ```bash
-uv run uvicorn backend.api:app --host 127.0.0.1 --port 8101 --reload
+uv run uvicorn app.gateway.app:app --host 127.0.0.1 --port 8101 --reload
 ```
 
 启动成功后，你可以在浏览器中访问：

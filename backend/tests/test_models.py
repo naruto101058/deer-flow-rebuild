@@ -1,4 +1,4 @@
-from backend.models import FakeChatModel
+from deerflow.models.fake import FakeChatModel
 from copy import deepcopy
 def test_fake_model_returns_assistant_message():
     model = FakeChatModel()
